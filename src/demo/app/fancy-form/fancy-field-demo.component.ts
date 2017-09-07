@@ -26,7 +26,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
         <li>
           <code>@Output() onChange: EventEmitter&lt;any&gt;</code>
            - whenever the field changes, the new value is emitted
-        </li>  
+        </li>
         <li>
           <code>@Input() name: string</code>
            - name of model attribute, and optional explicit changed/invalid bindings
@@ -78,7 +78,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">foo bar baz</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>number</code></h2>
         <p>Use the number parameter to get an HTML5 number field.</p>
@@ -93,7 +93,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">Give us your best guess.</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>checkbox</code></h2>
         <p>Use the checkbox parameter to get an HTML5 number field. Checkbox does not show the changed indicator.</p>
@@ -108,7 +108,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">psst, you're not.</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>select</code></h2>
         <p>
@@ -118,9 +118,9 @@ import { HalDoc } from 'ngx-prx-styleguide';
         Usage:
         <pre class="code">
           const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
-          // OR 
+          // OR
           const colors = [['red', 'R'], ['yellow', 'Y'], ['blue', 'B']]
-          
+
           &lt;prx-fancy-field [model]="model" name="color" label="Favorite color" [select]="colors"&gt;
             &lt;div class="fancy-hint"&gt;It doesn't have to be your absolute favorite, but you can only pick one.&lt;/div&gt;
           &lt;/prx-fancy-field&gt;
@@ -130,7 +130,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">It doesn't have to be your absolute favorite, but you can only pick one.</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>textarea</code></h2>
         <p>Use textarea for longer text fields.</p>
@@ -151,11 +151,11 @@ import { HalDoc } from 'ngx-prx-styleguide';
           </div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>.nested</code></h2>
         <p>
-          Use content projection to include anything in a fancy-field. Maybe a date picker? 
+          Use content projection to include anything in a fancy-field. Maybe a date picker?
           Projected content will be shown in a div with class <code>.nested</code>.
         </p>
         Usage:
@@ -179,6 +179,21 @@ import { HalDoc } from 'ngx-prx-styleguide';
       </aside>
 
       <aside>
+        <h2>Disabled</h2>
+        <p>You can also manually disable a field via an input</p>
+        Usage:
+        <pre class="code">
+          &lt;prx-fancy-field textinput [model]="model" name="foo" label="Foo" disabled=true&gt;
+            &lt;button class="fancy-hint" (click)="toggleDisabled()&gt;Toggle disabled&lt;/button&gt;
+          &lt;/prx-fancy-field&gt;
+        </pre>
+        Example:
+        <prx-fancy-field textinput [model]="model" name="foo" label="Foo" [disabled]="isDisabled">
+          <button class="fancy-hint" (click)="toggleDisabled()">Toggle disabled</button>
+        </prx-fancy-field>
+      </aside>
+
+      <aside>
         <h2>no <code>model</code></h2>
         <p>If model is undefined or not provided, the field will be disabled.</p>
         Usage:
@@ -192,7 +207,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">This field is disabled because there is no model.</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>small</code></h2>
         <p>Use the small parameter to get an <code>h4</code> label rather than <code>h3</code>.</p>
@@ -207,7 +222,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">Labels can be made small.</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>inline</code></h2>
         <p>Labels can be shown inline. Typically inline fields do not provide a hint.</p>
@@ -219,7 +234,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
         Example:
         <prx-fancy-field inline textinput [model]="model" name="foo" label="Foo"></prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>required</code></h2>
         <p>
@@ -237,7 +252,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
           <div class="fancy-hint">Please provide your full name.</div>
         </prx-fancy-field>
       </aside>
-      
+
       <aside>
         <h2><code>.fancy-hint</code></h2>
         <p>Use content projection with the <code>.fancy-hint</code> selector to show a field hint. Hints typically end with punctuation.</p>
@@ -269,4 +284,10 @@ export class FancyFieldDemoComponent {
     }, null));
 
   colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
+
+  isDisabled = false;
+
+  toggleDisabled() {
+    this.isDisabled = !this.isDisabled;
+  }
 }

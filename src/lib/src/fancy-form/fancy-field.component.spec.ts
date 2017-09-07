@@ -39,12 +39,13 @@ class TestComponent {
 
 @Component({
   selector: 'test-text-component',
-  template: `<prx-fancy-field [model]="model" [name]="name" [textinput]="textinput"></prx-fancy-field>`
+  template: `<prx-fancy-field [model]="model" [name]="name" [textinput]="textinput" [disabled]="disabled"></prx-fancy-field>`
 })
 class TestTextComponent {
   model: any;
   name: string;
   textinput: any;
+  disabled: boolean;
 }
 
 @Component({
@@ -156,6 +157,20 @@ describe('FancyFieldComponent', () => {
     comp.required = true;
     fix.detectChanges();
     expect(de.query(By.css('label[required]'))).not.toBeNull();
+  });
+
+  it('renders a disabled field', () => {
+    compText.model = {foobar: 'some value', changed: () => false, invalid: () => false};
+    compText.name = 'foobar';
+    compText.textinput = true;
+    fixText.detectChanges();
+    expect(deText.query(By.css('input')).nativeElement.getAttribute('disabled')).toBeNull();
+    compText.disabled = true;
+    fixText.detectChanges();
+    expect(deText.query(By.css('input')).nativeElement.getAttribute('disabled')).not.toBeNull();
+    compText.disabled = false;
+    fixText.detectChanges();
+    expect(deText.query(By.css('input')).nativeElement.getAttribute('disabled')).toBeNull();
   });
 
   it('renders hint content', () => {

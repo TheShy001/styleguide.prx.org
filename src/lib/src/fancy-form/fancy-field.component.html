@@ -14,22 +14,22 @@
   </div>
 
   <ng-container *ngIf="model">
-    <input *ngIf="type == 'textinput'" [id]="name" type="text"
+    <input *ngIf="type == 'textinput'" [id]="name" type="text" [attr.disabled]="disabled"
       [ngModel]="model[name]" (ngModelChange)="doOnChange($event)"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"/>
-    <input *ngIf="type == 'number'" [id]="name" type="number"
+    <input *ngIf="type == 'number'" [id]="name" type="number" [attr.disabled]="disabled"
       [ngModel]="model[name]" (ngModelChange)="doOnChange($event)"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"/>
     <fieldset *ngIf="type == 'checkbox'" >
-      <input [id]="name" type="checkbox"
+      <input [id]="name" type="checkbox" [attr.disabled]="disabled"
         [ngModel]="model[name]" (ngModelChange)="doOnChange($event)"
         [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"/>
       <label class="prompt" [for]="name">{{prompt}}</label>
     </fieldset>
-    <textarea *ngIf="type == 'textarea'" [id]="name"
+    <textarea *ngIf="type == 'textarea'" [id]="name" [attr.disabled]="disabled"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"
       [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"></textarea>
-    <select *ngIf="type == 'select'" [id]="name"
+    <select *ngIf="type == 'select'" [id]="name" [attr.disabled]="disabled"
       [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model" prxEvent="change">
       <option *ngFor="let opt of select" [value]="opt[1]">{{opt[0]}}</option>

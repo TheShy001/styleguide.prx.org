@@ -45,6 +45,7 @@ export class FancyFieldComponent {
   _small = false;
   _inline = false;
   _required: boolean = null;
+  _disabled: boolean = null;
   @Input()
   set small(small: boolean) { this._small = isset(small); }
   get small() { return this._small; }
@@ -54,6 +55,9 @@ export class FancyFieldComponent {
   @Input()
   set required(required: boolean) { this._required = isset(required) ? true : null; }
   get required() { return this._required; }
+  @Input()
+  set disabled(disabled: boolean) { this._disabled = isset(disabled) ? true : null; }
+  get disabled() { return this._disabled; }
 
   get changedFieldName(): string {
     return (this.changed === undefined) ? this.name : this.changed;
